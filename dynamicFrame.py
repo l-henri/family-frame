@@ -15,8 +15,8 @@ pictureDirectory = "pics"
 archiveDirectory = "archive"
 detach_dir = 'photos/'
 maxPic = 10
-# picDisplayTime = 60*60*24*14
-picDisplayTime = 10
+picDisplayTime = 60*60*24*14
+# picDisplayTime = 10
 
 
 ###### Functions
@@ -27,42 +27,45 @@ def cleanFile():
     pictureNumber = len(fileList)
     print("There are %s pictures in %s folder" % (pictureNumber, pictureDirectory))
     removedPics = 0 
-    ####################### WIP
-    # print(fileList)
+    
+    # Retrieving name and date of creation of pictures
     timestampsList = []
-    print(fileList)
+    # print(fileList)
     for pictureName in fileList:
         picturePath = detach_dir + pictureDirectory  + "/" +  pictureName
         pictureBirth = os.path.getmtime(picturePath)
         timestampsList.append(pictureBirth)
-        print(pictureName, pictureBirth)
+        # print(pictureName, pictureBirth)
 
+    # Formatting for numpy
     arrayBase = [(timestampsList[i], fileList[i]) for i in range(0, len(timestampsList))]
-    print("arrayBase")
-    print(arrayBase)
+    # print("arrayBase")
+    # print(arrayBase)
     dtype = [('timestamp', float), ('filename', 'S150')]
     arrayBaseNp = np.array(arrayBase, dtype=dtype)
-    print("arrayBaseNp")
-    print(arrayBaseNp)
+    # print("arrayBaseNp")
+    # print(arrayBaseNp)
+
+    # Sorting using timestamp
     arrayBaseOrderedNp = np.sort(arrayBaseNp, order='timestamp')
     # print(arrayBaseOrderedNp)
     arrayBaseOrder = arrayBaseOrderedNp.tolist()
-    print(arrayBaseOrder)
-    for pictureInfo in arrayBaseOrder:
-        # print(pictureInfo[1])
-        picturePath = detach_dir + pictureDirectory  + "/" +  pictureInfo[1].decode("utf-8") 
-        print(picturePath)
+    # print(arrayBaseOrder)
 
-    return
-        ############################## WIP
-    for pictureName in fileList:
-        #### Checking that minimum amount of pictures is present
+    # Extracting as a list
+    orderedFilesList = []
+    for pictureInfo in arrayBaseOrder:
+        orderedFilesList.append(pictureInfo[1].decode("utf-8") )
+
+    # Going through file list to clean
+    for pictureName in orderedFilesList:
+        # Checking that minimum amount of pictures is present
         picturesLeft = pictureNumber - removedPics
         # if picturesLeft <= maxPic:
         #     print("%s pictures left. We want at least %s pictures, not removing any" % (picturesLeft, maxPic))
         #     break
 
-        print("There are enough pictures, we can remove an older one")
+        print("There are enough pictures, we can remove an older one. Checking if this one is old enough.")
         #### Checking if any older picture can be remove
         picturePath = detach_dir + pictureDirectory  + "/" +  pictureName
         pictureBirth = os.path.getmtime(picturePath)
