@@ -22,9 +22,9 @@ sudo apt-get install gnome-schedule
 ### Clone repo in Documents folder for user pi
 ```
 cd /home/pi/Documents
-git clone <L'url de ce repo hein>
+git clone https://github.com/l-henri/family-frame
 cd family-frame
-python3 -m pip install requirements.txt
+pip3 install -r requirements.txt
 ```
 ### Crontab conf
 
