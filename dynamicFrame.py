@@ -49,8 +49,8 @@ def cleanFile():
     arrayBaseOrder = arrayBaseOrderedNp.tolist()
     print(arrayBaseOrder)
     for pictureInfo in arrayBaseOrder:
-        print(pictureInfo[1])
-        picturePath = detach_dir + pictureDirectory  + "/" +  pictureName
+        # print(pictureInfo[1])
+        picturePath = detach_dir + pictureDirectory  + "/" +  pictureInfo[1].decode("utf-8") 
         print(picturePath)
 
     return
