@@ -14,7 +14,7 @@ import json
 pictureDirectory = "pics"
 archiveDirectory = "archive"
 detach_dir = 'photos/'
-maxPic = 10
+maxPic = 40
 picDisplayTime = 60*60*24*14
 # picDisplayTime = 10
 
@@ -72,9 +72,9 @@ def cleanFile():
         if pictureBirth < time.time() - picDisplayTime:
             print("Picture " + pictureName + " will be moved")
             print(pictureBirth)
-            # newPicturePath =  detach_dir + archiveDirectory  + "/" +  pictureName
-            # os.rename(picturePath, newPicturePath)
-            # removedPics = removedPics + 1
+            newPicturePath =  detach_dir + archiveDirectory  + "/" +  pictureName
+            os.rename(picturePath, newPicturePath)
+            removedPics = removedPics + 1
         else:
             print("Picture %s was added not too long ago, we leave it there" % pictureName)
 

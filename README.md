@@ -33,7 +33,7 @@ pip3 install -r requirements.txt
 # */30 * * * * bash /home/pi/Documents/family-frame/frame.sh
 
 # Downloading new photos, every 2 minutes
-# */2 * * * * cd /home/pi/Documents/family-frame/ && python dynamicFrame_04.py
+# */2 * * * * cd /home/pi/Documents/family-frame/ && python3 family-frame.py
 
 # Starting display at reboot
 # @reboot bash /home/pi/Documents/family-frame/frame.sh
