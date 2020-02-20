@@ -61,9 +61,9 @@ def cleanFile():
     for pictureName in orderedFilesList:
         # Checking that minimum amount of pictures is present
         picturesLeft = pictureNumber - removedPics
-        # if picturesLeft <= maxPic:
-        #     print("%s pictures left. We want at least %s pictures, not removing any" % (picturesLeft, maxPic))
-        #     break
+        if picturesLeft <= maxPic:
+            print("%s pictures left. We want at least %s pictures, not removing any" % (picturesLeft, maxPic))
+            break
 
         print("There are enough pictures, we can remove an older one. Checking if this one is old enough.")
         #### Checking if any older picture can be remove
