@@ -4,14 +4,17 @@ A raspberry pi based frame to display family photos
 ## Preparation
 ### Open lightdm conf
 > sudo nano /etc/lightdm/lightdm.conf
+
 Modify line
+
 > xserver-command=X -s 0 dpms
 
 ### Update & installation of feh
+```
 sudo apt-get update
 sudo apt-get install feh
 sudo apt-get install gnome-schedule
-
+``
 ### Contrab conf
 
 ```
