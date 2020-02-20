@@ -44,4 +44,5 @@ pip3 install -r requirements.txt
 # Every day, shutting down at 11PM
 # 30 22 * * * sudo shutdown -h now
 ```
+### Create a file secretData.json with email information
 
