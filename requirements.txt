@@ -1,0 +1,4 @@
+email
+getpass
+imaplib
+pillow
