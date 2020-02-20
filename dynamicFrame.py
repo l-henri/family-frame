@@ -43,7 +43,7 @@ def cleanFile():
     arrayBaseOrderedNp = np.sort(arrayBaseNp, axis=0)
     # print(arrayBaseOrderedNp)
     arrayBaseOrder = arrayBaseOrderedNp.tolist()
-    # print(arrayBaseOrder)
+    print(arrayBaseOrder)
     for pictureInfo in arrayBaseOrder:
         print(pictureInfo[1])
     return
