@@ -30,19 +30,19 @@ pip3 install -r requirements.txt
 
 ```
 # Launch photo display, every 30mn
-# */30 * * * * bash /home/pi/Documents/family-frame/launchFeh.sh
+*/30 * * * * bash /home/pi/Documents/family-frame/launchFeh.sh
 
 # Downloading new photos, every 2 minutes
-# */2 * * * * cd /home/pi/Documents/family-frame/ && python3 family-frame.py
+*/2 * * * * cd /home/pi/Documents/family-frame/ && python3 family-frame.py
 
 # Starting display at reboot
-# @reboot bash /home/pi/Documents/family-frame/launchFeh.sh
+@reboot bash /home/pi/Documents/family-frame/launchFeh.sh
 
 # Rebooting every hour to avoid screen freeze
-# 0 * * * * sudo reboot
+0 * * * * sudo reboot
 
 # Every day, shutting down at 11PM
-# 30 22 * * * sudo shutdown -h now
+30 22 * * * sudo shutdown -h now
 ```
 ### Create a file secretData.json with email information
 
