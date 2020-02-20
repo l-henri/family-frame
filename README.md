@@ -14,7 +14,8 @@ Modify line
 sudo apt-get update
 sudo apt-get install feh
 sudo apt-get install gnome-schedule
-``
+
+```
 ### Contrab conf
 
 ```
