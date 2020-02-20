@@ -158,7 +158,7 @@ def loadSecretData():
 ####### Program
 def main():
     # Checking if data dirs are here
-    if detach_dir not in os.listdir('.''):
+    if detach_dir[0:len(detach_dir)-1] not in os.listdir('.'):
         os.mkdir(detach_dir)
     if pictureDirectory not in os.listdir(detach_dir):
         os.mkdir(detach_dir+pictureDirectory)
