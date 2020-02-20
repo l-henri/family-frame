@@ -1,0 +1,43 @@
+DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority /usr/bin/feh -q -p -Z -F -R  60 -Y -D 15.0 /media/NASHDD1/test
+DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority /usr/bin/feh -q -p -Z -F -R  60 -Y -D 15.0 /home/pi/Documents/dynamicFrame/pics/
+
+New
+DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority /usr/bin/feh -q -p -Z -F -R  60 -Y -D 15.0 --rotate=EXIF /home/pi/Documents/dynamicFrame/pics/
+
+Old
+DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority /usr/bin/feh  -F -Z -z -Y -D5 /home/pi/Documents/dynamicFrame/pics/
+
+
+--rotate=EXIF 
+
+-Z: Autozoom
+-x: Borderless
+-F Fullscreen
+-Y hide pointer
+-p preload image
+-q quiet, don't report errors
+-z randomize
+-R XX Reload after XX seconds
+-D delay for each picture
+
+
+New
+DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority /usr/bin/feh -R 60 -D 15.0 /home/pi/Documents/dynamicFrame/pics/
+
+Old
+DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority /usr/bin/feh  -D5 /home/pi/Documents/dynamicFrame/pics/
+
+
+Ultimate
+DISPLAY=:0.0 XAUTHORITY=/home/pi/.Xauthority /usr/bin/feh -Z -x -F -Y -p -q -z -R 60 -D 15.0 /home/pi/Documents/Python/dynamicFrame/pics/
+
+-Z: Autozoom
+-x: Borderless
+-F Fullscreen
+-Y hide pointer
+-p preload image
+-q quiet, don't report errors
+-z randomize
+-R XX Reload after XX seconds
+-D delay for each picture
+
