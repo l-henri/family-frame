@@ -30,22 +30,29 @@ def cleanFile():
     ####################### WIP
     # print(fileList)
     timestampsList = []
+    print(fileList)
     for pictureName in fileList:
         picturePath = detach_dir + pictureDirectory  + "/" +  pictureName
         pictureBirth = os.path.getmtime(picturePath)
         timestampsList.append(pictureBirth)
         print(pictureName, pictureBirth)
 
-    arrayBase = [[timestampsList[i], fileList[i]] for i in range(0, len(timestampsList))]
-    # print(arrayBase)
-    arrayBaseNp = np.array(arrayBase)
-    # print(arrayBaseNp)
-    arrayBaseOrderedNp = np.sort(arrayBaseNp, axis=0)
+    arrayBase = [(timestampsList[i], fileList[i]) for i in range(0, len(timestampsList))]
+    print("arrayBase")
+    print(arrayBase)
+    dtype = [('timestamp', float), ('filename', 'S150')]
+    arrayBaseNp = np.array(arrayBase, dtype=dtype)
+    print("arrayBaseNp")
+    print(arrayBaseNp)
+    arrayBaseOrderedNp = np.sort(arrayBaseNp, order='timestamp')
     # print(arrayBaseOrderedNp)
     arrayBaseOrder = arrayBaseOrderedNp.tolist()
     print(arrayBaseOrder)
     for pictureInfo in arrayBaseOrder:
         print(pictureInfo[1])
+        picturePath = detach_dir + pictureDirectory  + "/" +  pictureName
+        print(picturePath)
+
     return
         ############################## WIP
     for pictureName in fileList:
