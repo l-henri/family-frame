@@ -108,56 +108,58 @@ def retrieveNewPhotos():
     userName = userData['username']
     passwd = userData['password']
     try:
-        print("Connecting to imap server")
-        imapSession = imaplib.IMAP4_SSL('mail.register.eu')
-        print("Opening session")
-        typ, accountDetails = imapSession.login(userName, passwd)
-        if typ != 'OK':
-            print('Not able to sign in!')
-            raise
-        print("Selecting emails")
-        imapSession.select('INBOX')
-        # typ, data = imapSession.search(None, 'ALL')
-        deadline = time.time() - picDisplayTime
-        requestTime = time.strftime('%d-%b-%Y', time.localtime(deadline))
-        print("Searching inbox for emails after " + str(requestTime))
+	    print("Connecting to imap server")
+	    imapSession = imaplib.IMAP4_SSL('mail.register.eu')
+	    print("Opening session")
+	    typ, accountDetails = imapSession.login(userName, passwd)
+	    if typ != 'OK':
+	        print('Not able to sign in!')
+	        raise
+	    print("Selecting emails")
+	    imapSession.select('INBOX')
+	    # typ, data = imapSession.search(None, 'ALL')
+	    deadline = time.time() - picDisplayTime
+	    requestTime = time.strftime('%d-%b-%Y', time.localtime(deadline))
+	    print("Searching inbox for emails after " + str(requestTime))
 
-        typ, data = imapSession.search(None, '(SINCE ' + requestTime+ ')')
-        
-        if typ != 'OK':
-            print('Error searching Inbox.')
-            raise
-        print ("Iterating over all emails")
-        # Iterating over all emails
-        for msgId in data[0].split():
-            typ, messageParts = imapSession.fetch(msgId, '(RFC822)')
-            if typ != 'OK':
-                print ('Error fetching mail.')
-                raise
+	    typ, data = imapSession.search(None, '(SINCE ' + requestTime+ ')')
+	    
+	    if typ != 'OK':
+	        print('Error searching Inbox.')
+	        raise
+	    print ("Iterating over all emails")
+	    # Iterating over all emails
+	    for msgId in data[0].split():
+	        typ, messageParts = imapSession.fetch(msgId, '(RFC822)')
+	        if typ != 'OK':
+	            print ('Error fetching mail.')
+	            raise
+	        # print(messageParts)
+	        emailBody = messageParts[0][1]
+	        # print(emailBody)
+	        mail = email.message_from_bytes(emailBody)
 
-            emailBody = messageParts[0][1]
-            mail = email.message_from_string(emailBody)
-            for part in mail.walk():
+	        for part in mail.walk():
 
-                if part.get_content_maintype() == 'multipart':
-                    # print part.as_string()
-                    continue
-                if part.get('Content-Disposition') is None:
-                    # print part.as_string()
-                    continue
-                fileName = part.get_filename()
-                # Checking if a file is attached
-                if bool(fileName):
-                    filePath = os.path.join(detach_dir, 'pics', fileName)
-                    if not os.path.isfile(filePath) :
-                        print("File %s has been found" % fileName)
-                        # print filePath
-                        fp = open(filePath, 'wb')
-                        fp.write(part.get_payload(decode=True))
-                        fp.close()
-                        checkOrientation(filePath)
-        imapSession.close()
-        imapSession.logout()
+	            if part.get_content_maintype() == 'multipart':
+	                # print part.as_string()
+	                continue
+	            if part.get('Content-Disposition') is None:
+	                # print part.as_string()
+	                continue
+	            fileName = part.get_filename()
+	            # Checking if a file is attached
+	            if bool(fileName):
+	                filePath = os.path.join(detach_dir, 'pics', fileName)
+	                if not os.path.isfile(filePath) :
+	                    print("File %s has been found" % fileName)
+	                    # print filePath
+	                    fp = open(filePath, 'wb')
+	                    fp.write(part.get_payload(decode=True))
+	                    fp.close()
+	                    checkOrientation(filePath)
+	    imapSession.close()
+	    imapSession.logout()
     except :
         print('Not able to download all attachments.')
 
